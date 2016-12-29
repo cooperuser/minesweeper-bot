@@ -49,7 +49,7 @@ class MineSweeper {
 	generateMap(position) {
 		let random = seedRandom(this.seed);
 		this.placeBombs(random);
-		while (this.map[position.x][position.y].count) {
+		while (this.map[position.x][position.y].count || this.map[position.x][position.y].bomb) {
 			this.map = MineSweeper.EmptyMap(this.width, this.height);
 			this.placeBombs(random);
 		}
@@ -63,7 +63,7 @@ class MineSweeper {
 			this.firstMove = false;
 		}
 		this.map[position.x][position.y].mined = true;
-		if (!this.map[position.x][position.y].count) {
+		if (!this.map[position.x][position.y].count && !this.map[position.x][position.y].bomb) {
 			this.exposeEmpties(position);
 		}
 		this.print();
