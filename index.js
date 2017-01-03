@@ -56,12 +56,12 @@ bot.on("message", function(message) {
 		message.channel.sendMessage("```" + format(game) + "```").then(message => {gameMessage = message});
 	}
 	if (gameMessage != undefined) {
-		let data = (message.content.match(/\s*([fF])*\s*`\s*([0-9]+)\s*,\s*([0-9]+)\s*`\s*/));
+		let data = (message.content.match(/\s*([fF])*\s*`\s*([0-9a-zA-Z]+)\s*,\s*([0-9a-zA-Z]+)\s*`\s*/));
 		if (data != null) {
 			if (data[1] == undefined) {
-				game.play(new Vector2(parseInt(data[2]), parseInt(data[3])));
+				game.play(new Vector2(parseInt(data[2], 16), parseInt(data[3], 16)));
 			} else if (data[1].toLowerCase() == 'f') {
-				game.flag(new Vector2(parseInt(data[2]), parseInt(data[3])));
+				game.flag(new Vector2(parseInt(data[2], 16), parseInt(data[3], 16)));
 			}
 			gameMessage.edit("```" + format(game) + "```");
 			message.delete();

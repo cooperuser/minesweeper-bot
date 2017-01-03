@@ -104,6 +104,7 @@ class MineSweeper {
 			position = new Vector2(position, y);
 		}
 		this.map[position.x][position.y].setFlag();
+		this.print();
 	}
 	print() {
 		let output = "";
@@ -113,7 +114,12 @@ class MineSweeper {
 				if (spot.flag) {
 					output += 'F';
 				} else if (spot.mined) {
-					output += spot.count ? spot.count : ' ';
+					if (spot.bomb) {
+						output += 'B';
+					}
+					else {
+						output += spot.count ? spot.count : ' ';
+					}
 				} else {
 					output += '*';
 				}
